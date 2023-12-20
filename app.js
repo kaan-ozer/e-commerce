@@ -1,12 +1,12 @@
 //IMPORTS
+// Load environment variables from a .env file into process.env.
+// This line of code reads the .env file in the root of the project and adds the key-value pairs to the process.env object.
+require("dotenv").config();
+
 const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoose = require("mongooese");
-
-//global vars
-const MONGODB_URI =
-  "mongodb+srv://maximilian:9u4biljMQc4jjqbe@cluster0-ntrwp.mongodb.net/shop";
+const mongoose = require("mongoose");
 
 // creates express app
 const app = express();
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //mongoose connection
 mongoose
-  .connect(MONGODB_URI)
+  .connect(process.env.MONGODB_URI)
   .then((result) => {
     app.listen(3300);
   })
